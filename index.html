@@ -1,0 +1,161 @@
+<!DOCTYPE HTML>
+<html lang="pt-br">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Função eval() JS</title>
+
+	<style>
+	body {
+		font-family: "Arial", Helvetica, sans-serif;
+	}
+
+	small,
+	code,
+	label {
+		display: block;
+	}
+
+	h1,
+	h2 {
+		font-weight: 600px;
+	}
+
+	code {
+		background-color: #eee;
+		border-radius: 5px;
+		padding: 10px;
+		margin-top: 5px;
+		border-left: dodgerblue 6px solid;
+	}
+
+	input {
+		border-radius: 5px;
+		border: #000 1px solid;
+		margin-top: 5px;
+		padding: 5px;
+	}
+
+	small {
+		font-size: 1rem;
+		margin-top: 10px;
+	}
+
+	button {
+		margin-top: 10px;
+		border-radius: 8px;
+		padding-bottom: 10px;
+		padding-top: 10px;
+		padding-left: 5px;
+		padding-right: 5px;
+		background-color: #1E90FF;
+		color: #fff;
+		font-weight: 600;
+		border: dodgerblue 1px solid;
+		cursor: pointer;
+		margin-bottom: 10px;
+	}
+
+	button:hover,
+	button:active,
+	button:focus,
+	button:visited {
+		opacity: 0.8;
+	}
+
+	#expressao {
+		margin-top: 5px;
+	}
+
+	.bordaesquerda {
+		border-left: dodgerblue 6px solid;
+		background: #eee;
+		border-bottom-left-radius: 5px;
+		border-top-left-radius: 5px;
+	}
+	</style>
+</head>
+
+<body>
+	<h1 class="bordaesquerda">eval(string)</h1>
+	<h2 class="bordaesquerda">
+		Descrição
+	</h2>
+	<small>
+		A função eval() avalia uma expressão do tipo string e a executa.
+	</small>
+	<h2 class="bordaesquerda">
+		Principal finalidade
+	</h2>
+	<small>
+		Avaliar e executar expressões do tipo string.
+	</small>
+	<h2 class="bordaesquerda">
+		Aplicações praticas
+	</h2>
+	<small>
+		Se você construir uma expressão aritmética como uma string, você pode usar eval() para executa-la.
+		<code>
+			function exemplo(){<br>
+				var resultado = eval("2 + 2");<br>
+				return resultado;<br>
+			}<br>
+			exemplo();//Ira retornar 4<br>
+		</code>
+	</small>
+	<h2 class="bordaesquerda">
+		Retorno
+	</h2>
+	<small>
+		O eval faz uma conversão implícita(também conhecido como coerção implícita) nos valores executados por ele, por exemplo:<br>
+		<code>
+			var resultado = eval("2 + 2");<br>
+			console.log(resultado);// Ira retorna 4<br>
+			console.log(typeof(resultado));// Ira retornar que o valor é do tipo number<br><br>
+
+			var datateste = "Date(1971,3,8)";<br>
+			var data;<br>
+			var resultado = eval("data = new " + datateste + ";");<br>
+			console.log(resultado);// Ira retornar Thu Apr 08 1971 00:00:00 GMT-0300 (Hora oficial do Brasil)<br>
+			console.log(typeof(resultado));//Ira retornar que o valor é do tipo object<br>
+		</code>
+	</small>
+	<h2 class="bordaesquerda">
+		Parâmetros
+	</h2>
+	<small>
+		Para a função eval() funcionar é necessario que ela receba um parâmetro do tipo string.
+	</small>
+	<h2 class="bordaesquerda">
+		Exemplo - Calculadora de expressões matemáticas simples
+	</h2>
+	<small>
+		<label>Digite uma expressão matemática simples(apenas operações basicas).</label>
+		<input type="text" id="expressaomat">
+		<label id="expressao"></label>
+		<label id="resultado"></label>
+		<button onclick="calcular()">Calcular</button>
+		<label>O codigo do exemplo acima pode ser encontrado abaixo:</label>
+		<code>
+			function calcular(){<br>
+				var expressaomat = document.getElementById("expressaomat").value;//Atribui o valor do input com id="expressaomat" a variavel expressaomat<br>
+				var resultado= document.getElementById("resultado");//Atribui a label com id="resultado" a variavel resultado<br>
+				var expressao= document.getElementById("expressao");//Atribui a label com id="expressao" a variavel expressao<br>
+				expressao.innerHTML= "Expressão inserida: " +expressaomat;<br>
+				var calculo = eval(expressaomat);<br>
+				resultado.innerHTML= "Resultado retornado: " +calculo ;<br>
+			}
+		</code>
+	</small>
+</body>
+<script>
+function calcular() {
+	var expressaomat = document.getElementById("expressaomat").value;
+	var resultado = document.getElementById("resultado");
+	var expressao = document.getElementById("expressao");
+	expressao.innerHTML = "Expressão inserida: " + expressaomat;
+	var calculo = eval(expressaomat);
+	resultado.innerHTML = "Resultado retornado: " + calculo;
+}
+</script>
+</html>
